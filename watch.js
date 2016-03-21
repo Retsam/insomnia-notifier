@@ -1,9 +1,11 @@
 var notifier = require("node-notifier");
 var Promise = require("bluebird");
 var request = require("request-promise");
+var openurl = require("openurl");
 
 var REFRESH_RATE = 30000;
 var UPDATE_URI = "https://www.gog.com/insomnia/current_deal";
+var SALE_URI = "https://www.gog.com";
 
 var region = "US";
 
@@ -20,7 +22,8 @@ function handleUpdate(saleData) {
     var priceInfo = getPriceInfo(saleData.product.prices);
     notifier.notify({
         title: "New Sale: "+title,
-        message: priceInfo.is + " ("+saleData.discount+"% off)"
+        message: priceInfo.is + " ("+saleData.discount+"% off)",
+        wait: true
     });
 }
 
@@ -58,3 +61,7 @@ function watchUpdates() {
 }
 
 watchUpdates();
+
+notifier.on("click", function () {
+    openurl.open(SALE_URI);
+});
