@@ -1,0 +1,12 @@
+{
+  "name": "insomnia-watcher",
+  "version": "1.0.0",
+  "description": "Watches the insomnia sale and notifies of what's currently being sold",
+  "main": "watch.js",
+  "author": "Retsam",
+  "license": "ISC",
+  "dependencies": {
+    "node-notifier": "^4.5.0",
+    "request-promise": "^2.0.1"
+  }
+}
